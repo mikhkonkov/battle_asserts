@@ -3,7 +3,8 @@
             [battle-asserts.core :refer :all]
             [battle-asserts.check-asserts :refer :all]
             [battle-asserts.parse-solution :refer :all]
-            [multicode.core :as mc]))
+            [multicode.core :as mc]
+            [battle-asserts.checker :refer :all]))
 
 (def sources "source")
 
@@ -39,3 +40,10 @@
         (mc/prettify-code 
           :ruby 
           (get-asserts-from-file "test/support/fixtures/array_transpose/multicode.clj"))))) 
+
+(deftest test-checker
+  (is (= false (check-file "issue.example.yml"))))
+
+(deftest test-array-fetch-checker
+  (is (= true (check-file "source/array_fetch/array_fetch.yml"))))
+
