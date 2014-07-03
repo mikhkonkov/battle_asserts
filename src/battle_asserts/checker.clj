@@ -18,16 +18,16 @@
 
 
 (defn- read-file
-	[file-name] 
-	(slurp file-name))
+  [file-name] 
+  (slurp file-name))
 
 (defn- parse-file
   [file-input]
   (yaml/parse-string file-input))
 
 (defn- get-cheks
-   [p-hash]
-   (get p-hash :checks))
+  [p-hash]
+  (get p-hash :checks))
 
 (defn- get-multi-checks
   [p-hash]
@@ -36,7 +36,7 @@
 (defn- check-lang-dupl-count
   [p-hash]
   (letfn [(check-lang [acc c] 
-            (+ acc (if (nil? (get (get-cheks p-hash) (keyword c))) 0 1)))] 
+                      (+ acc (if (nil? (get (get-cheks p-hash) (keyword c))) 0 1)))] 
     (reduce check-lang 0 (get-multi-checks p-hash))))
 
 (defn- check-lang-dupl
@@ -89,13 +89,13 @@
 
 (defn all-checkers
   [parsed-yaml]
-    (and (check-allow-keys parsed-yaml)
-      (check-require-keys parsed-yaml)
-      (check-allow-levels parsed-yaml)
-      (check-allow-authors parsed-yaml)
-      (check-allow-langs parsed-yaml)
-      (check-require-lang-and-multi parsed-yaml)
-      (check-lang-dupl parsed-yaml)))
+  (and (check-allow-keys parsed-yaml)
+       (check-require-keys parsed-yaml)
+       (check-allow-levels parsed-yaml)
+       (check-allow-authors parsed-yaml)
+       (check-allow-langs parsed-yaml)
+       (check-require-lang-and-multi parsed-yaml)
+       (check-lang-dupl parsed-yaml)))
 
 (defn check-file 
   "path to file"

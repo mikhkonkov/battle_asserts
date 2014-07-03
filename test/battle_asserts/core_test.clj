@@ -47,3 +47,4 @@
 (deftest test-array-fetch-checker
   (is (= true (check-file "test/support/fixtures/array_fetch/array_fetch.yml"))))
 
+
